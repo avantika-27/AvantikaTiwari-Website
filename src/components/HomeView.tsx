@@ -5,7 +5,6 @@ import { TabType } from '../types';
 import { RecruiterRoleMatcher } from './RecruiterRoleMatcher';
 import { RecruiterRoleId, RECRUITER_ROLES } from '../data/recruiterRoles';
 import { useProfilePhoto } from '../context/PhotoContext';
-import { PhotoUploadModal } from './PhotoUploadModal';
 
 interface HomeViewProps {
   onNavigate: (tab: TabType) => void;
@@ -21,7 +20,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onSelectRole = (_roleId: RecruiterRoleId) => {}
 }) => {
   const [activeMetricHover, setActiveMetricHover] = useState<number | null>(null);
-  const [photoUploadOpen, setPhotoUploadOpen] = useState(false);
   const { photoUrl } = useProfilePhoto();
 
   const currentRoleConfig = RECRUITER_ROLES.find((r) => r.id === selectedRole);
@@ -126,9 +124,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             {/* Right Visual Card - Avantika Tiwari Portrait & Current Focus */}
             <div className="md:col-span-4 flex flex-col items-center md:items-end justify-center relative mt-4 md:mt-0">
               <div
-                onClick={() => setPhotoUploadOpen(true)}
-                title="Click to update your profile photo"
-                className="w-64 sm:w-72 md:w-full max-w-[340px] aspect-[4/5] relative animate-fade-in group cursor-pointer"
+                className="w-64 sm:w-72 md:w-full max-w-[340px] aspect-[4/5] relative animate-fade-in group"
               >
                 {/* Ambient glow backdrop */}
                 <div className="absolute -inset-1 bg-gradient-to-tr from-blue-600/25 via-indigo-500/15 to-purple-600/20 rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -409,10 +405,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      <PhotoUploadModal
-        isOpen={photoUploadOpen}
-        onClose={() => setPhotoUploadOpen(false)}
-      />
     </div>
   );
 };
