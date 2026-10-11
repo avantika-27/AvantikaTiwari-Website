@@ -127,7 +127,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="md:col-span-4 flex flex-col items-center md:items-end justify-center relative mt-4 md:mt-0">
               <div
                 onClick={() => setPhotoUploadOpen(true)}
-                title="Click to update with your exact photo & sync to GitHub"
+                title="Click to update your profile photo"
                 className="w-64 sm:w-72 md:w-full max-w-[340px] aspect-[4/5] relative animate-fade-in group cursor-pointer"
               >
                 {/* Ambient glow backdrop */}
@@ -143,14 +143,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   {/* Elegant bottom gradient vignette */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
-
-                  {/* Top-right subtle sync badge on hover */}
-                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono-tech text-[11px] shadow-lg">
-                      <span className="material-symbols-outlined text-[14px] text-blue-400">cloud_upload</span>
-                      <span>Sync Real Photo</span>
-                    </span>
-                  </div>
 
                   {/* Intro card name watermark overlay */}
                   <div className="absolute bottom-4 left-4 right-4 z-10 pointer-events-none">
