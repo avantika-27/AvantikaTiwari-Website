@@ -1,4 +1,12 @@
 import { ExperienceItem, MetricItem, ProjectItem, EducationItem, SkillCategoryItem } from '../types';
+import safetySignalImage from '../assets/images/safetysignal_gis_1791750709302.jpg';
+import llmCodeJudgeImage from '../assets/images/llm_code_judge_1791750721869.jpg';
+import emotiLearnImage from '../assets/images/emotilearn_vision_1791750730779.jpg';
+import greenGrowthImage from '../assets/images/greengrowth_tax_1791750740414.jpg';
+import vendorEvaluationImage from '../assets/images/vendor_evaluation_1791750749819.jpg';
+import billionaireWealthImage from '../assets/images/billionaire_wealth_1791750760849.jpg';
+import creditCardChurnImage from '../assets/images/credit_card_churn_1791750769346.jpg';
+import powerTimeSeriesImage from '../assets/images/power_time_series_1791750777927.jpg';
 
 export const METRICS_DATA: MetricItem[] = [
   {
@@ -185,7 +193,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     badge: 'GEOSPATIAL ML',
     description: 'Built a data-driven system to detect and analyze public safety risks by integrating spatial, demographic, and incident data, leveraging machine learning models and geospatial analysis to identify high-risk zones and generate actionable insights for preventive decision-making.',
     fullDescription: 'SafetySignal harmonizes incident records, census demographics, economic indices, and spatial asset topologies (distances to transit, schools, liquor outlets). Applying spatial cross-validation, the pipeline mitigates spatial autocorrelation biases and produces calibrated tract- and block-level risk scores deployed on an interactive Streamlit dashboard.',
-    imageUrl: '/src/assets/images/safetysignal_gis_1791750709302.jpg',
+    imageUrl: safetySignalImage,
     imageAlt: 'High-tech dark mode digital geospatial map showing public safety risk analytics, glowing chloropleth blocks, and incident clusters',
     highlightMetric: {
       value: 'Tract & Block',
@@ -226,7 +234,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     badge: 'NLP RESEARCH',
     description: 'Developed an LLM-based framework for code repair, completion, & test evaluation with verdict-based comparison of code quality, incorporating adversarial testing, rubric-driven evaluation, & bias mitigation to classify good vs. bad code.',
     fullDescription: 'This research project investigates how state-of-the-art Large Language Models (LLMs) can reliably evaluate programming solutions across functional correctness, runtime efficiency, and code quality. By establishing a multi-tiered evaluation taxonomy and prompt calibration methodology, the system achieves a 93% correlation with senior engineering peer reviews.',
-    imageUrl: '/src/assets/images/llm_code_judge_1791750721869.jpg',
+    imageUrl: llmCodeJudgeImage,
     imageAlt: 'Futuristic AI code evaluation interface with glowing abstract syntax tree AST nodes and automated benchmark telemetry',
     highlightMetric: {
       value: '93%',
@@ -266,7 +274,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     badge: 'COMPUTER VISION & NLP',
     description: 'Built a sequential deep learning model (RNN/LSTM) for emotion classification using NLP and data mining techniques, achieving improved accuracy in sentiment and emotion recognition tasks.',
     fullDescription: 'EmotiLearn combines lightweight Convolutional Neural Networks and recurrent sequential deep learning (RNN/LSTM) architectures for multimodal emotion detection. Optimized for edge inference on resource-constrained devices, processing real-time feeds with sub-15ms frame latency while ensuring robust multi-class classification.',
-    imageUrl: '/src/assets/images/emotilearn_vision_1791750730779.jpg',
+    imageUrl: emotiLearnImage,
     imageAlt: 'Advanced computer vision facial emotion recognition system with digital facial mesh wireframe and confidence analytics',
     highlightMetric: {
       value: '80%+',
@@ -306,7 +314,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     badge: 'GENAI / FISCAL TECH',
     description: 'An AI-powered environmental tax compliance and advisory platform leveraging Large Language Models, automated statutory tax code parsing, and carbon credit deduction calculations to optimize green fiscal policies for enterprises.',
     fullDescription: 'GreenGrowth combines LangChain RAG pipelines, ChromaDB vector indexing over complex federal and state environmental tax codes, and structured reasoning agents. It cross-examines industrial emissions reports against applicable clean technology tax credits (such as IRA Section 45V/45Q), calculating optimal deduction schedules and surfacing audit-ready regulatory evidence.',
-    imageUrl: '/src/assets/images/greengrowth_tax_1791750740414.jpg',
+    imageUrl: greenGrowthImage,
     imageAlt: 'Environmental fiscal technology dashboard with carbon credit analytics, clean tech tax incentives, and deduction charts',
     highlightMetric: {
       value: 'LLM RAG',
@@ -347,7 +355,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     badge: 'MULTI-AGENT AI',
     description: 'Intelligent procurement and vendor assessment system that automates RFP analysis, compliance verification, and multi-criteria risk scoring using RAG pipelines and comparative LLM decision rubrics.',
     fullDescription: 'Automates vendor proposal assessment by extracting SLA terms, pricing structures, and compliance certifications from multi-vendor bids. Utilizes an ensemble of specialized LLM evaluator agents to generate objective weighted comparison matrices and risk flags for enterprise procurement officers.',
-    imageUrl: '/src/assets/images/vendor_evaluation_1791750749819.jpg',
+    imageUrl: vendorEvaluationImage,
     imageAlt: 'Enterprise procurement AI evaluation dashboard with holographic vendor performance scorecards, compliance checks, and risk matrix',
     highlightMetric: {
       value: 'Multi-Agent',
@@ -388,7 +396,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     badge: 'DATA VISUALIZATION',
     description: 'Designed an exploratory data visualization project on global billionaire wealth, using dashboards to reveal distribution skews, outliers, & temporal trends across industries and regions.',
     fullDescription: 'Uncovers wealth concentration dynamics, demographic representations, and cross-sector growth trends among global ultra-high-net-worth individuals. Features multi-scale Lorenz curves, Pareto distribution modeling, and interactive hierarchical visualizations.',
-    imageUrl: '/src/assets/images/billionaire_wealth_1791750760849.jpg',
+    imageUrl: billionaireWealthImage,
     imageAlt: 'Global wealth distribution data visualization with Lorenz curve charts, statistical Pareto plots, and economic inequality metrics',
     highlightMetric: {
       value: 'D3.js + Python',
@@ -428,7 +436,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     badge: 'STATISTICAL MODELING',
     description: 'Performed statistical analysis & modeling on credit card customer data to identify key churn drivers, quantify churn risk, and inform data-driven retention strategies with interpretable visual & numeric insights.',
     fullDescription: 'Conducted exploratory data analysis, hypothesis testing, and gradient boosted customer attrition models on consumer credit card portfolios. Quantifies friction factors such as utilization ratios, contact frequency, and transaction momentum to output calibrated churn hazard scores.',
-    imageUrl: '/src/assets/images/credit_card_churn_1791750769346.jpg',
+    imageUrl: creditCardChurnImage,
     imageAlt: 'Fintech predictive churn analytics dashboard with customer attrition flow lines and risk probability distributions',
     highlightMetric: {
       value: '88% Precision',
@@ -468,7 +476,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     badge: 'DATA ANALYTICS',
     description: 'Conducted time series analysis on household electric power consumption to uncover daily, weekly, & seasonal patterns and evaluated forecasting methods for predicting future usage & potential peak-load periods.',
     fullDescription: 'Analyzed over 2 million records of continuous electrical consumption telemetry. Developed SARIMA, XGBoost, and LSTM recurrent architectures to predict kilowatt-hour peak loads, enabling intelligent demand response and load balancing for smart grid applications.',
-    imageUrl: '/src/assets/images/power_time_series_1791750777927.jpg',
+    imageUrl: powerTimeSeriesImage,
     imageAlt: 'Electric smart grid 24-hour peak load time series power consumption forecasting chart with continuous waveforms',
     highlightMetric: {
       value: 'Time Series',
