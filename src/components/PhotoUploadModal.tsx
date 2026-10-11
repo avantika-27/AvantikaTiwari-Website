@@ -11,11 +11,14 @@ export const PhotoUploadModal: React.FC<PhotoUploadModalProps> = ({ isOpen, onCl
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [statusText, setStatusText] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
+    setStatusText(null);
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -35,17 +38,44 @@ export const PhotoUploadModal: React.FC<PhotoUploadModalProps> = ({ isOpen, onCl
     reader.readAsDataURL(file);
   };
 
-  const handleSave = () => {
-    if (preview) {
+  const handleSave = async () => {
+    if (!preview) return;
+    setIsSaving(true);
+    setStatusText('Saving photo, building production bundle, and pushing to GitHub...');
+    setError(null);
+
+    try {
       setPhoto(preview);
-      setPreview(null);
-      onClose();
+
+      const res = await fetch('/api/save-photo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: preview }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        throw new Error(data.error || 'Server returned an error');
+      }
+
+      setStatusText('✅ Successfully updated and pushed to GitHub (main & gh-pages)!');
+      setTimeout(() => {
+        setIsSaving(false);
+        setPreview(null);
+        setStatusText(null);
+        onClose();
+      }, 2500);
+    } catch (err: any) {
+      console.warn('Sync error:', err);
+      setError(err.message || 'Could not sync to GitHub automatically. Image saved in preview.');
+      setIsSaving(false);
     }
   };
 
   const handleReset = () => {
     resetToDefault();
     setPreview(null);
+    setStatusText(null);
     onClose();
   };
 
@@ -96,6 +126,13 @@ export const PhotoUploadModal: React.FC<PhotoUploadModalProps> = ({ isOpen, onCl
           </div>
         </div>
 
+        {statusText && (
+          <p className="text-xs text-emerald-400 bg-emerald-950/40 border border-emerald-800/50 p-2.5 rounded-lg mb-4 text-center font-mono-tech flex items-center justify-center gap-2">
+            {isSaving && <span className="w-3 h-3 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin"></span>}
+            <span>{statusText}</span>
+          </p>
+        )}
+
         {error && (
           <p className="text-xs text-red-400 bg-red-950/40 border border-red-800/50 p-2.5 rounded-lg mb-4 text-center font-mono-tech">
             {error}
@@ -114,8 +151,9 @@ export const PhotoUploadModal: React.FC<PhotoUploadModalProps> = ({ isOpen, onCl
         <div className="flex flex-col gap-2.5">
           <button
             type="button"
+            disabled={isSaving}
             onClick={() => fileInputRef.current?.click()}
-            className="w-full py-3 px-4 rounded-xl bg-[#1c1c20] hover:bg-[#25252b] border border-[#323238] hover:border-blue-500/50 text-white font-mono-tech text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm"
+            className="w-full py-3 px-4 rounded-xl bg-[#1c1c20] hover:bg-[#25252b] border border-[#323238] hover:border-blue-500/50 text-white font-mono-tech text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm disabled:opacity-50"
           >
             <span className="material-symbols-outlined text-[18px] text-blue-400">upload_file</span>
             <span>Choose Your Photo (WhatsApp / Camera / Gallery)</span>
@@ -124,11 +162,21 @@ export const PhotoUploadModal: React.FC<PhotoUploadModalProps> = ({ isOpen, onCl
           {preview && (
             <button
               type="button"
+              disabled={isSaving}
               onClick={handleSave}
-              className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-headline text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-blue-600/30"
+              className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-headline text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-blue-600/30 disabled:opacity-50"
             >
-              <span className="material-symbols-outlined text-[18px]">check_circle</span>
-              <span>Apply This Exact Photo</span>
+              {isSaving ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                  <span>Syncing to GitHub (main & gh-pages)...</span>
+                </>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined text-[18px]">cloud_upload</span>
+                  <span>Save Exact Photo & Push to GitHub</span>
+                </>
+              )}
             </button>
           )}
 

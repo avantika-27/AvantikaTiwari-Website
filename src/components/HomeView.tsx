@@ -5,6 +5,7 @@ import { TabType } from '../types';
 import { RecruiterRoleMatcher } from './RecruiterRoleMatcher';
 import { RecruiterRoleId, RECRUITER_ROLES } from '../data/recruiterRoles';
 import { useProfilePhoto } from '../context/PhotoContext';
+import { PhotoUploadModal } from './PhotoUploadModal';
 
 interface HomeViewProps {
   onNavigate: (tab: TabType) => void;
@@ -20,6 +21,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onSelectRole = (_roleId: RecruiterRoleId) => {}
 }) => {
   const [activeMetricHover, setActiveMetricHover] = useState<number | null>(null);
+  const [photoUploadOpen, setPhotoUploadOpen] = useState(false);
   const { photoUrl } = useProfilePhoto();
 
   const currentRoleConfig = RECRUITER_ROLES.find((r) => r.id === selectedRole);
@@ -123,11 +125,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
             {/* Right Visual Card - Avantika Tiwari Portrait & Current Focus */}
             <div className="md:col-span-4 flex flex-col items-center md:items-end justify-center relative mt-4 md:mt-0">
-              <div className="w-64 sm:w-72 md:w-full max-w-[340px] aspect-[4/5] relative animate-fade-in group">
+              <div
+                onClick={() => setPhotoUploadOpen(true)}
+                title="Click to update with your exact photo & sync to GitHub"
+                className="w-64 sm:w-72 md:w-full max-w-[340px] aspect-[4/5] relative animate-fade-in group cursor-pointer"
+              >
                 {/* Ambient glow backdrop */}
                 <div className="absolute -inset-1 bg-gradient-to-tr from-blue-600/25 via-indigo-500/15 to-purple-600/20 rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-[#27272a] group-hover:border-blue-500/40 shadow-[0_12px_40px_rgba(0,0,0,0.8)] bg-[#141417]">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-[#27272a] group-hover:border-blue-500/50 shadow-[0_12px_40px_rgba(0,0,0,0.8)] bg-[#141417]">
                   <img
                     src={photoUrl}
                     alt="Avantika Tiwari - Junior SDE at Meta & ML Engineer"
@@ -137,6 +143,14 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   {/* Elegant bottom gradient vignette */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+
+                  {/* Top-right subtle sync badge on hover */}
+                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono-tech text-[11px] shadow-lg">
+                      <span className="material-symbols-outlined text-[14px] text-blue-400">cloud_upload</span>
+                      <span>Sync Real Photo</span>
+                    </span>
+                  </div>
 
                   {/* Intro card name watermark overlay */}
                   <div className="absolute bottom-4 left-4 right-4 z-10 pointer-events-none">
@@ -402,6 +416,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </div>
         </div>
       </section>
+
+      <PhotoUploadModal
+        isOpen={photoUploadOpen}
+        onClose={() => setPhotoUploadOpen(false)}
+      />
     </div>
   );
 };
