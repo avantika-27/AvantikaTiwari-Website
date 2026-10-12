@@ -80,7 +80,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 <p>San Francisco Bay Area, CA • (602) 877-1637</p>
                 <p>astiwar1@asu.edu • avantika.tiwari2000@gmail.com</p>
                 <p>
-                  <a href="https://www.linkedin.com/in/avantika" target="_blank" rel="noopener noreferrer" className="hover:text-white print:text-gray-700 underline">linkedin.com/in/avantika</a>
+                  <a href="https://www.linkedin.com/in/avantika-tiwari-1bb6091a4/" target="_blank" rel="noopener noreferrer" className="hover:text-white print:text-gray-700 underline">linkedin.com/in/avantika-tiwari-1bb6091a4</a>
                   {' • '}
                   <a href="https://github.com/avantika-27" target="_blank" rel="noopener noreferrer" className="hover:text-white print:text-gray-700 underline">github.com/avantika-27</a>
                 </p>
