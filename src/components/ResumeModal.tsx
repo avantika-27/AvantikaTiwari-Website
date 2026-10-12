@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { EXPERIENCES_DATA, EDUCATION_DATA, SKILL_CATEGORIES_DATA, PROJECTS_DATA } from '../data/portfolioData';
 
 interface ResumeModalProps {
@@ -8,14 +8,22 @@ interface ResumeModalProps {
 
 export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
   const [downloading, setDownloading] = useState(false);
+  const printInProgress = useRef(false);
 
   if (!isOpen) return null;
 
   const handlePrint = () => {
+    if (printInProgress.current) return;
+
+    printInProgress.current = true;
     setDownloading(true);
     setTimeout(() => {
-      window.print();
-      setDownloading(false);
+      try {
+        window.print();
+      } finally {
+        printInProgress.current = false;
+        setDownloading(false);
+      }
     }, 300);
   };
 
