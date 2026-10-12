@@ -28,7 +28,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto print:p-0 print:bg-white">
+    <div id="resume-modal" className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto print:p-0 print:bg-white">
       <div
         className="bg-[#121212] w-full max-w-4xl rounded-3xl shadow-2xl border border-[#27272a] overflow-hidden flex flex-col max-h-[92vh] my-auto animate-fade-in-up print:max-h-none print:shadow-none print:border-none print:rounded-none print:bg-white"
         onClick={(e) => e.stopPropagation()}

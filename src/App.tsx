@@ -57,7 +57,7 @@ export default function App() {
 
   return (
     <PhotoProvider>
-      <div className="bg-[#0a0a0a] font-body text-[#ededed] flex flex-col min-h-screen selection:bg-neutral-800 selection:text-white relative">
+      <div id="app-content" className="bg-[#0a0a0a] font-body text-[#ededed] flex flex-col min-h-screen selection:bg-neutral-800 selection:text-white relative">
         {/* Navigation Header */}
         <Header
           activeTab={activeTab}
