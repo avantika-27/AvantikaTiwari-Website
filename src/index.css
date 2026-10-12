@@ -93,7 +93,7 @@
 @media print {
   @page {
     size: letter;
-    margin: 0.35in;
+    margin: 0.5in;
   }
 
   html,
@@ -144,84 +144,30 @@
   }
 
   #printable-resume {
+    display: block !important;
     height: auto !important;
     max-height: none !important;
     overflow: visible !important;
     padding: 0 !important;
     background: white !important;
+    color: #111 !important;
+    font-size: 10pt !important;
+    line-height: 1.3 !important;
   }
 
-  #one-page-resume {
-    display: block !important;
-    color: #111;
-    font-family: Arial, sans-serif;
-    font-size: 8pt;
-    line-height: 1.16;
+  #printable-resume > * + * {
+    margin-block-start: 16pt !important;
   }
 
-  #one-page-resume header {
-    border-bottom: 1px solid #444;
-    padding-bottom: 5pt;
-    text-align: center;
+  #printable-resume h1,
+  #printable-resume h2,
+  #printable-resume h3 {
+    break-after: avoid-page;
   }
 
-  #one-page-resume h1 {
-    font-size: 20pt;
-    line-height: 1;
-    margin: 0;
-  }
-
-  #one-page-resume header p {
-    margin: 2pt 0 0;
-  }
-
-  #one-page-resume .resume-subtitle {
-    font-size: 10pt;
-    font-weight: 700;
-  }
-
-  #one-page-resume a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  #one-page-resume section {
-    margin-top: 6pt;
-    break-inside: avoid;
-  }
-
-  #one-page-resume h2 {
-    border-bottom: 1px solid #888;
-    font-size: 9pt;
-    line-height: 1.1;
-    margin: 0 0 3pt;
-    padding-bottom: 1pt;
-    text-transform: uppercase;
-  }
-
-  #one-page-resume article {
-    break-inside: avoid;
-    margin-bottom: 3pt;
-  }
-
-  #one-page-resume .resume-entry-heading {
-    display: flex;
-    align-items: baseline;
-    gap: 2pt;
-    font-size: 7.8pt;
-  }
-
-  #one-page-resume .resume-entry-heading span {
-    flex-shrink: 0;
-    font-size: 7pt;
-    margin-left: auto;
-  }
-
-  #one-page-resume p {
-    margin: 1pt 0 2pt;
-  }
-
-  #one-page-resume section:last-child p {
-    margin: 1pt 0;
+  #printable-resume li,
+  #printable-resume p {
+    orphans: 3;
+    widows: 3;
   }
 }
