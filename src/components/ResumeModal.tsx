@@ -73,6 +73,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
         {/* Formatted Resume Body */}
         <div className="p-8 md:p-12 overflow-y-auto space-y-8 bg-[#0a0a0a] font-body text-neutral-200 print:bg-white print:text-black print:p-6" id="printable-resume">
+          <div className="print:hidden">
           {/* Header */}
           <div className="border-b-2 border-[#27272a] print:border-black pb-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
@@ -214,6 +215,73 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 <strong className="text-white print:text-black">Analytics & Visualization:</strong> Tableau, Power BI, Matplotlib, Seaborn, Plotly, Grafana, Google Analytics
               </p>
             </div>
+          </div>
+          </div>
+
+          <div id="one-page-resume" className="hidden print:block">
+            <header>
+              <h1>AVANTIKA TIWARI</h1>
+              <p className="resume-subtitle">Data Science &amp; Analytics Professional</p>
+              <p>San Francisco Bay Area, CA · (602) 877-1637 · astiwar1@asu.edu · avantika.tiwari2000@gmail.com</p>
+              <p>
+                <a href="https://www.linkedin.com/in/avantika-tiwari-1bb6091a4/">linkedin.com/in/avantika-tiwari-1bb6091a4</a>
+                {' · '}
+                <a href="https://github.com/avantika-27">github.com/avantika-27</a>
+              </p>
+            </header>
+
+            <section>
+              <h2>Experience</h2>
+              {EXPERIENCES_DATA.map((experience) => {
+                const summaries: Record<string, string> = {
+                  meta: 'Improved computer-use agent navigation reliability by 28%; automated evaluation tooling that increased pipeline throughput by 40%.',
+                  'asu-gra': 'Applied GIS and machine learning with spatial cross-validation to model neighborhood risk; built RAG assistants with LangChain, ChromaDB, and Hugging Face.',
+                  solarspell: 'Built Rust telemetry for 50,000+ learners and parallelized data handling to cut database insertion latency by approximately 90%.',
+                  jio: 'Built Airflow, NiFi, and Python ETL processing 10+ TB/day at 99.9% accuracy; customer analytics drove 20% coupon uplift and approximately 15% revenue growth.',
+                  vit: 'Built an Android grading app with Firebase real-time sync, replacing spreadsheet workflows for 15 professors across 10+ courses.'
+                };
+
+                return (
+                  <article key={experience.id}>
+                    <div className="resume-entry-heading">
+                      <strong>{experience.role}</strong> | {experience.organization}
+                      <span>{experience.period}</span>
+                    </div>
+                    <p>{summaries[experience.id]}</p>
+                  </article>
+                );
+              })}
+            </section>
+
+            <section>
+              <h2>Education</h2>
+              {EDUCATION_DATA.map((education) => (
+                <article key={education.id}>
+                  <div className="resume-entry-heading">
+                    <strong>{education.degree}</strong> | {education.institution}
+                    <span>{education.period}</span>
+                  </div>
+                  <p>{education.gpa}</p>
+                </article>
+              ))}
+            </section>
+
+            <section>
+              <h2>Selected Projects</h2>
+              {PROJECTS_DATA.filter((project) => ['safetysignal', 'llm-judges', 'emotilearn'].includes(project.id)).map((project) => (
+                <p key={project.id}>
+                  <strong>{project.title}</strong> — {project.highlightMetric.value} {project.highlightMetric.label}
+                </p>
+              ))}
+            </section>
+
+            <section>
+              <h2>Technical Skills</h2>
+              <p><strong>Programming:</strong> Python, SQL, Rust, Java, Scala</p>
+              <p><strong>ML &amp; AI:</strong> Machine Learning, LLMs, RAG, LangChain, Hugging Face, Scikit-learn</p>
+              <p><strong>Data &amp; Cloud:</strong> Apache Spark, Airflow, NiFi, GCP, AWS, Docker, CI/CD</p>
+              <p><strong>Analytics:</strong> Tableau, Looker, Power BI, Statistical Analysis</p>
+            </section>
           </div>
         </div>
       </div>
